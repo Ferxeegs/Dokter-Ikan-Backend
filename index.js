@@ -28,14 +28,16 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        secure: 'auto'  // Atur sesuai kebutuhan (true jika menggunakan HTTPS)
+        secure: false, // Ubah menjadi true jika menggunakan HTTPS
+        httpOnly: true, // Menjaga keamanan cookie
+        sameSite: 'none' // Pastikan bisa digunakan oleh frontend di domain berbeda
     }
 }));
 
 // Konfigurasi CORS
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'  // Sesuaikan dengan frontend kamu
+    origin: true  // Mengizinkan semua origin, tetapi tetap mendukung credentials
 }));
 
 app.use(express.json());
